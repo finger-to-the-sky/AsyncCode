@@ -13,22 +13,20 @@ import asyncio
 
 
 async def fetch_data():
-    for i in range(10):
-        print({'data': 100})
-        await asyncio.sleep(2)
+    await asyncio.sleep(3)
+    return {'data': 100}
 
 
-async def back_counter():
-    for i in range(-10, 0):
-        t = i - i * 2
-
-        print(t)
-        await asyncio.sleep(2)
+async def timer():
+    for i in range(-10, 1):
+        i = i - i * 2
+        if i % 2 == 0:
+            await asyncio.sleep(2)
+            print(i)
 
 
 async def main():
-    task1 = asyncio.create_task(back_counter())
-    task2 = asyncio.create_task(fetch_data())
-    await asyncio.gather(task1, task2)
+    res = await asyncio.gather(fetch_data(), timer())
+    print(f'Result: {res[0]}')
 
 asyncio.run(main())
