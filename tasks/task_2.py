@@ -13,6 +13,7 @@ import asyncio
 
 
 async def fetch_data():
+    print('Collecting data from databases...')
     await asyncio.sleep(3)
     return {'data': 100}
 
